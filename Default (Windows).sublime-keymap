@@ -1,0 +1,3 @@
+[
+	{ "keys": ["alt+shift+o"], "command": "python_open_module" }
+]

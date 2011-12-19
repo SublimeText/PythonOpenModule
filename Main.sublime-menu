@@ -1,0 +1,10 @@
+[
+	{
+		"id": "file",
+		"children":
+		[
+			{ "caption": "Open Python module", "command": "python_open_module" }
+		]
+	}
+]
+
