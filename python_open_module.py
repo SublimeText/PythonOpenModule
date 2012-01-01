@@ -1,3 +1,4 @@
+import sublime
 import sublime_plugin
 import sys
 import imp
@@ -37,7 +38,7 @@ class PythonOpenModule(sublime_plugin.WindowCommand):
             if module[2][2] == imp.PY_SOURCE:
                 self.window.open_file(module[1])
         except ImportError:
-            pass
+            sublime.error_message('Could not find module %s' % text)
 
     def run(self):
         self.window.show_input_panel("Python module on sys.path:", "", self.on_done, None, None)
