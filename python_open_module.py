@@ -37,6 +37,8 @@ class PythonOpenModule(sublime_plugin.WindowCommand):
             module = self.find_module(text, sys_path)
             if module[2][2] == imp.PY_SOURCE:
                 self.window.open_file(module[1])
+            elif module[2][2] == imp.PKG_DIRECTORY:
+                self.window.open_file('%s/__init__.py' % module[1])
             else:
                 sublime.error_message('Could not open module %s' % module[1])
         except ImportError:
