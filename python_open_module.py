@@ -1,5 +1,6 @@
 import sublime
 import sublime_plugin
+import os
 import sys
 import imp
 import subprocess
@@ -16,12 +17,21 @@ class PythonOpenModule(sublime_plugin.WindowCommand):
         else:
             return result
 
-    # shell out to user's python and get their sys.path
-    # include any open folders on the syspath
+    """
+    shell out to user's python and get their sys.path.
+    use a virtualenv python executable, if the user specified 
+    a virtual environment in the python_virtualenv setting.
+    include any open folders on the syspath
+    """
     def get_user_syspath(self):
+        
         try:
-            # try to get sys.path from python on user path
-            args = ['python', '-c', 'import sys; print sys.path']
+            # if the user has a python_executable in their project settings, use that
+            # otherwise use `python`
+            python_executable = self.window.active_view().settings().get('python_executable', 'python')
+
+            # try to get sys.path from the python executable
+            args = [python_executable, '-c', 'import sys; print sys.path']
             sys_path = eval(subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0])
         except OSError:
             # use sublime's sys.path instead
