@@ -1,6 +1,5 @@
 import sublime
 import sublime_plugin
-import os
 import sys
 import imp
 import subprocess
@@ -24,7 +23,7 @@ class PythonOpenModule(sublime_plugin.WindowCommand):
     include any open folders on the syspath
     """
     def get_user_syspath(self):
-        
+
         try:
             # if the user has a python_executable in their project settings, use that
             # otherwise use `python`
