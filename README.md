@@ -17,7 +17,7 @@ For example, if your virtualenv was called `monty`:
 
     {
 		"settings": {
-			"python_executable": "/Users/grobertson/.virtualenvs/monty/bin/python"
+			"python_executable": "/Users/glen/.virtualenvs/monty/bin/python"
 		},
 		"folders":
 		[
