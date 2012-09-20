@@ -54,7 +54,9 @@ class PythonOpenModule(sublime_plugin.WindowCommand):
             if module[2][2] == imp.PY_SOURCE:
                 self.window.open_file(module[1])
             elif module[2][2] == imp.PKG_DIRECTORY:
-                self.window.open_file('%s/__init__.py' % module[1])
+                # open directory in new sublime window
+                # sublime API does not currently allow opening directories
+                subprocess.Popen(['subl', module[1]])
             else:
                 sublime.error_message('Could not open module %s' % module[1])
         except ImportError:

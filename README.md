@@ -26,6 +26,3 @@ For example, if your virtualenv was called `monty`:
 			}
 		]
 	}
-
-## Notes:
-*   If the package name is a package directory, __init__.py in that directory will be opened
