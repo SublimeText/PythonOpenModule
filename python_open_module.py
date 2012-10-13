@@ -16,6 +16,13 @@ class PythonOpenModule(sublime_plugin.WindowCommand):
         else:
             return result
 
+    @property
+    def subl_command(self):
+        if sublime.platform() == 'windows':
+            return 'sublime_text'
+        else:
+            return 'subl'
+
     """
     shell out to user's python and get their sys.path.
     use a virtualenv python executable, if the user specified 
@@ -59,9 +66,10 @@ class PythonOpenModule(sublime_plugin.WindowCommand):
                 try:
                     # open module's directory and __init__.py in new sublime window
                     # sublime API does not currently allow opening directories
-                    subprocess.Popen(['subl', module[1], '%s/__init__.py' % module[1]])
+                    subprocess.Popen([self.subl_command, module[1], '%s/__init__.py' % module[1]])
                 except OSError:
-                    sublime.error_message('Could not open directory %s.\n\nAdd `subl` to your path to open module directories' % module[1])
+                    sublime.error_message('Could not open directory %s.\n\n'
+                        'Add `%s` to your path to open module directories' % (module[1], self.subl_command))
             else:
                 sublime.error_message('Could not open module %s' % module[1])
         except ImportError:
