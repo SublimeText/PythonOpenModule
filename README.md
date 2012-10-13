@@ -1,28 +1,20 @@
 # Python Open Module
-This plugin will open a python module file present on sys.path and any open folders in the window.
+This plugin will open a python module file/directory present on sys.path and any open folders in the window.
 
-## Usage
-After opening the input panel (by either "Open Python module" under the File menu, or a keyboard shortcut, type the package name (e.g. `decimal` or `logging.config`) into the input panel and press enter.
-
-## Python sys.path
-The sys.path that is searched depends on the python executable, which is selected in the following manner:
-
-1. `python_executable` in user settings (if set and a valid executable)
-1. `python` on the current user's path
-1. `python` used by sublime itself
+## Install
+1. Install `PythonOpenModule` through Package Control 
+1. Set up the `subl` command on your system (required to open new sublime windows for module directories)
 
 ## Virtual Environments
-You may wish to set `python_executable` in your project settings if you are using a virtualenv. 
-For example, if your virtualenv was called `monty`:
+If you are using a virtual environment in your project, then set the `python_executable` in your project settings. This overrides the sys.path that is searched by the plugin.
+
+For example:
 
     {
 		"settings": {
 			"python_executable": "/Users/glen/.virtualenvs/monty/bin/python"
-		},
-		"folders":
-		[
-			{
-				"path": "/Users/glen/monty"
-			}
-		]
+		}
 	}
+
+## Usage
+After opening the input panel (by either "Open Python module" under the File menu, or a keyboard shortcut, type the package name (e.g. `decimal` or `logging.config`) into the input panel and press enter.

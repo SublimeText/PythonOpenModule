@@ -38,7 +38,9 @@ class PythonOpenModule(sublime_plugin.WindowCommand):
         try:
             # try to get sys.path from the python executable
             args = [python_executable, '-c', 'import sys; print sys.path']
-            sys_path = eval(subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0])
+            sys_path_str = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
+            sys_path_str = sys_path_str.strip()
+            sys_path = eval(sys_path_str)
         except OSError:
             # use sublime's sys.path instead
             sys_path = sys.path
